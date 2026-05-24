@@ -63,7 +63,9 @@ export const BrandVideo: React.FC<BrandVideoProps> = (props) => {
       </Sequence>
 
       {hasVo && <Audio src={staticFile('vo.mp3')} />}
-      {hasMusic && <Audio src={staticFile('music.mp3')} volume={0.15} />}
+      {/* Music volume: 0.35 when there's no voiceover (chill ambient sits
+          as the lead audio), 0.15 when vo.mp3 is added to duck under voice. */}
+      {hasMusic && <Audio src={staticFile('music.mp3')} volume={hasVo ? 0.15 : 0.35} />}
     </AbsoluteFill>
   );
 };

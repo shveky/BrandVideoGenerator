@@ -34,8 +34,8 @@ npm run studio
 |---|---|---|
 | `public/logo.svg` | Your real logo (PNG / SVG) | Drop your file in `public/`; update `logoSrc` in `src/compositions/defaults.ts` and `props.json` |
 | `public/showcase.svg` | Your product screenshot or screen recording | Drop image in `public/`; update `mediaSrc`. For a video, swap `<Img>` → `<Video>` in `src/scenes/ShowcaseScene.tsx` |
-| `public/vo.mp3` *(optional)* | Voiceover audio | Drop the file — the composition auto-detects via HEAD request and mounts `<Audio>` only if present |
-| `public/music.mp3` *(optional)* | Background music | Same as voiceover. Plays at 15% volume so it sits under VO |
+| `public/vo.mp3` *(optional, gitignored)* | Voiceover audio | Drop the file — composition auto-detects and only mounts `<Audio>` if present |
+| `public/music.mp3` *(optional, gitignored)* | Background music | Same auto-detect. Plays at **35% volume** when standalone, ducks to **15%** when `vo.mp3` also exists. Download a CC0 track yourself (Pixabay Music / YouTube Audio Library / archive.org) — not committed to keep the repo light |
 
 ---
 

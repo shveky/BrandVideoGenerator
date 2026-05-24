@@ -10,6 +10,10 @@ out/
 *-key.json
 sa-key.json
 
+# Large media assets (download per README instead of committing)
+public/music.mp3
+public/vo.mp3
+
 # OS
 .DS_Store
 Thumbs.db

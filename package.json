@@ -1,0 +1,30 @@
+{
+  "name": "brand-video-app",
+  "version": "1.0.0",
+  "description": "20-second brand video generator with browser-based control panel (Remotion + Vite + React)",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "panel": "vite",
+    "panel:build": "vite build",
+    "render:wide": "remotion render BrandVideo16x9 out/brand-wide.mp4 --props=./props.json",
+    "render:vertical": "remotion render BrandVideo9x16 out/brand-vertical.mp4 --props=./props.json"
+  },
+  "repository": {},
+  "license": "Remotion Free License (individual developer use)",
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.0",
+    "@remotion/player": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER SHOWCASE — replace with your real product screenshot or a
+     short MP4 (then update mediaSrc + use <Video> instead of <Img> in the
+     ShowcaseScene). Designed to feel app-like with a fake UI sketch. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a4d3a" />
+      <stop offset="100%" stop-color="#0B3D2E" />
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.96" />
+      <stop offset="100%" stop-color="#f0f5f0" stop-opacity="0.92" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)" />
+
+  <!-- Fake phone frame -->
+  <rect x="660" y="120" width="600" height="840" rx="48" fill="#0B0B0B" />
+  <rect x="680" y="140" width="560" height="800" rx="36" fill="#ffffff" />
+
+  <!-- Status bar / header -->
+  <rect x="680" y="140" width="560" height="60" fill="#0B3D2E" />
+  <text x="960" y="180" font-family="Heebo, sans-serif" font-size="22" font-weight="700"
+        text-anchor="middle" fill="#ffffff" direction="rtl">טיול בטבע</text>
+
+  <!-- Hero card -->
+  <rect x="710" y="230" width="500" height="200" rx="16" fill="url(#card)" />
+  <text x="960" y="290" font-family="Heebo, sans-serif" font-size="36" font-weight="800"
+        text-anchor="middle" fill="#0B3D2E" direction="rtl">מסלול לדרום הגולן</text>
+  <text x="960" y="330" font-family="Heebo, sans-serif" font-size="20"
+        text-anchor="middle" fill="#5a6e60" direction="rtl">12 ק"מ · קל-בינוני · 4 שעות</text>
+  <text x="960" y="395" font-family="Heebo, sans-serif" font-size="18"
+        text-anchor="middle" fill="#5a6e60" direction="rtl">☀ 24° · 💧 0% גשם · 💨 רוח 8 קמ"ש</text>
+
+  <!-- Stop cards -->
+  <rect x="710" y="460" width="500" height="100" rx="12" fill="#E8B339" />
+  <text x="1170" y="500" font-family="Heebo, sans-serif" font-size="28" font-weight="700"
+        text-anchor="end" fill="#0B3D2E" direction="rtl">🏞️ נחל אל על</text>
+  <text x="1170" y="538" font-family="Heebo, sans-serif" font-size="16"
+        text-anchor="end" fill="#0B3D2E" direction="rtl">חניון התחלה · נקודה 1</text>
+
+  <rect x="710" y="580" width="500" height="100" rx="12" fill="#ffffff" />
+  <text x="1170" y="620" font-family="Heebo, sans-serif" font-size="28" font-weight="700"
+        text-anchor="end" fill="#0B3D2E" direction="rtl">💧 בריכת המשושים</text>
+  <text x="1170" y="658" font-family="Heebo, sans-serif" font-size="16"
+        text-anchor="end" fill="#5a6e60" direction="rtl">מעיין · נקודה 2</text>
+
+  <rect x="710" y="700" width="500" height="100" rx="12" fill="#ffffff" />
+  <text x="1170" y="740" font-family="Heebo, sans-serif" font-size="28" font-weight="700"
+        text-anchor="end" fill="#0B3D2E" direction="rtl">🌳 תצפית מערבית</text>
+  <text x="1170" y="778" font-family="Heebo, sans-serif" font-size="16"
+        text-anchor="end" fill="#5a6e60" direction="rtl">פסגה · נקודה 3</text>
+
+  <!-- CTA button -->
+  <rect x="780" y="850" width="360" height="64" rx="32" fill="#E8B339" />
+  <text x="960" y="893" font-family="Heebo, sans-serif" font-size="24" font-weight="800"
+        text-anchor="middle" fill="#0B0B0B" direction="rtl">התחל ניווט →</text>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER LOGO — replace with your real logo (PNG or SVG).
+     Update logoSrc in props/defaults to match the new filename. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8B339" />
+      <stop offset="100%" stop-color="#F4D06F" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="url(#g)" />
+  <path d="M60 110 Q100 70 140 110 Q120 140 100 140 Q80 140 60 110 Z" fill="#0B3D2E" />
+  <path d="M100 60 L108 90 L100 100 L92 90 Z" fill="#0B3D2E" />
+  <circle cx="100" cy="100" r="6" fill="#0B3D2E" />
+</svg>

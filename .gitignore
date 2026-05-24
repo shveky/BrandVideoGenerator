@@ -1,0 +1,21 @@
+node_modules/
+dist/
+out/
+.cache/
+*.log
+
+# Secrets
+.env
+.env.local
+*-key.json
+sa-key.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp

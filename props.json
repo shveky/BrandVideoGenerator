@@ -1,0 +1,16 @@
+{
+  "appName": "טיול בטבע",
+  "tagline": "תכנון טיולים בטוח",
+  "hookLine": "כל מה שצריך לתכנון מסלול, במקום אחד",
+  "ctaText": "התחילו עכשיו →",
+  "appUrl": "https://example.com",
+  "logoSrc": "logo.svg",
+  "mediaSrc": "showcase.svg",
+  "brandBg": "#0B3D2E",
+  "brandAccent": "#E8B339",
+  "captions": [
+    { "fromFrame": 30,  "durationInFrames": 60, "text": "מסלול בכמה לחיצות" },
+    { "fromFrame": 90,  "durationInFrames": 60, "text": "מזג אוויר ובטיחות בזמן אמת" },
+    { "fromFrame": 150, "durationInFrames": 60, "text": "שיתוף עם החברים — אוטומטי" }
+  ]
+}

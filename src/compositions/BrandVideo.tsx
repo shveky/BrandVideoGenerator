@@ -7,7 +7,11 @@ import { TIMELINE } from './defaults';
 import { BackgroundGradient } from '../scenes/BackgroundGradient';
 import { IntroScene } from '../scenes/IntroScene';
 import { HookScene } from '../scenes/HookScene';
-import { ShowcaseScene } from '../scenes/ShowcaseScene';
+import { FlightInfoScene } from '../scenes/FlightInfoScene';
+import { YachtSpecsScene } from '../scenes/YachtSpecsScene';
+import { YachtSimulatorScene } from '../scenes/YachtSimulatorScene';
+import { TavernasScene } from '../scenes/TavernasScene';
+import { NightlifeScene } from '../scenes/NightlifeScene';
 import { CtaScene } from '../scenes/CtaScene';
 
 // Load Heebo (Hebrew + Latin support) once at module load.
@@ -54,8 +58,24 @@ export const BrandVideo: React.FC<BrandVideoProps> = (props) => {
         <HookScene {...props} isPortrait={isPortrait} />
       </Sequence>
 
-      <Sequence from={TIMELINE.showcase.from} durationInFrames={TIMELINE.showcase.durationInFrames}>
-        <ShowcaseScene {...props} isPortrait={isPortrait} />
+      <Sequence from={TIMELINE.flight.from} durationInFrames={TIMELINE.flight.durationInFrames}>
+        <FlightInfoScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.yacht.from} durationInFrames={TIMELINE.yacht.durationInFrames}>
+        <YachtSpecsScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.simulator.from} durationInFrames={TIMELINE.simulator.durationInFrames}>
+        <YachtSimulatorScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.tavernas.from} durationInFrames={TIMELINE.tavernas.durationInFrames}>
+        <TavernasScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.nightlife.from} durationInFrames={TIMELINE.nightlife.durationInFrames}>
+        <NightlifeScene {...props} isPortrait={isPortrait} />
       </Sequence>
 
       <Sequence from={TIMELINE.cta.from} durationInFrames={TIMELINE.cta.durationInFrames}>

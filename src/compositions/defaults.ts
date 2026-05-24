@@ -1,32 +1,106 @@
 import type { BrandVideoProps } from './types';
 
+// v2 expanded timeline (1020 frames = 34s @ 30fps).
+// Intro/Hook trimmed to make room; original Showcase replaced with 5 new scenes.
+export const VIDEO_FPS = 30;
+export const VIDEO_DURATION_FRAMES = 1020;
+
+export const TIMELINE = {
+  intro:     { from: 0,   durationInFrames: 90  }, // 0-3s
+  hook:      { from: 90,  durationInFrames: 90  }, // 3-6s
+  flight:    { from: 180, durationInFrames: 120 }, // 6-10s
+  yacht:     { from: 300, durationInFrames: 120 }, // 10-14s
+  simulator: { from: 420, durationInFrames: 150 }, // 14-19s
+  tavernas:  { from: 570, durationInFrames: 210 }, // 19-26s
+  nightlife: { from: 780, durationInFrames: 120 }, // 26-30s
+  cta:       { from: 900, durationInFrames: 120 }, // 30-34s
+} as const;
+
 // Defaults match props.json so studio and CLI renders show the same content
 // out of the box. Edit either file to change the seeded values.
+// Sourced from the sailing app: YACHT_DEFAULT, p_pvk airport modal,
+// Nidri's taverna_items + nightlife_items.
 export const DEFAULT_PROPS: BrandVideoProps = {
-  appName: 'טיול בטבע',
-  tagline: 'תכנון טיולים בטוח',
-  hookLine: 'כל מה שצריך לתכנון מסלול, במקום אחד',
-  ctaText: 'התחילו עכשיו →',
-  appUrl: 'https://example.com',
+  appName: 'שייט ביוון 2026',
+  tagline: 'תכנון השייט הקבוצתי שלכם',
+  hookLine: 'כל מה שצריך לתכנן שייט מושלם — במקום אחד',
+  ctaText: 'צפו במסלול →',
+  appUrl: 'https://storage.googleapis.com/sailing-greece-2026-app',
   logoSrc: 'logo.svg',
   mediaSrc: 'showcase.svg',
-  brandBg: '#0B3D2E',
-  brandAccent: '#E8B339',
+  brandBg: '#0a3d62',
+  brandAccent: '#e9c46a',
   captions: [
-    { fromFrame: 30,  durationInFrames: 60, text: 'מסלול בכמה לחיצות' },
-    { fromFrame: 90,  durationInFrames: 60, text: 'מזג אוויר ובטיחות בזמן אמת' },
-    { fromFrame: 150, durationInFrames: 60, text: 'שיתוף עם החברים — אוטומטי' },
+    { fromFrame: 20,  durationInFrames: 70, text: '7 עצירות לאורך הים היוני' },
+    { fromFrame: 90,  durationInFrames: 70, text: 'תמונות אמיתיות מ-Google Maps' },
+    { fromFrame: 160, durationInFrames: 70, text: 'תכנון מסלול גמיש בדפדפן' },
+  ],
+  flightInfo: {
+    outbound: {
+      airline: 'Israir',
+      flightNo: '6H543',
+      from: 'TLV',
+      to: 'PVK',
+      depart: '06:00',
+      arrive: '08:40',
+      date: '06.06.2026',
+      durationHM: '2:40',
+    },
+    return: {
+      airline: 'TUS Airways',
+      flightNo: 'U8243',
+      from: 'PVK',
+      to: 'TLV',
+      depart: '12:30',
+      arrive: '14:45',
+      date: '13.06.2026',
+      durationHM: '2:15',
+    },
+    totalUsd: 4757,
+    pax: 3,
+  },
+  yachtSpecs: {
+    model: 'Bali 4.2',
+    year: 2021,
+    lengthM: 12.85,
+    beamM: 7.08,
+    cabins: 4,
+    berths: '8+1',
+    engines: '2×45 HP',
+    charterType: 'Bareboat',
+  },
+  // Coast: Preveza (top-right) → channel south → Lefkada east coast → Nidri.
+  // Coordinates are SVG-normalized to viewBox "0 0 100 60" used inside the scene.
+  simulatorRoute: [
+    { x: 75, y:  8, label: 'Preveza' },
+    { x: 70, y: 18 },
+    { x: 62, y: 26 },
+    { x: 55, y: 32 },
+    { x: 48, y: 38 },
+    { x: 42, y: 44 },
+    { x: 38, y: 50 },
+    { x: 35, y: 55, label: 'Nidri' },
+  ],
+  tavernas: [
+    { name: 'The Barrel',        rating: 4.6, sub: 'דגים טריים' },
+    { name: 'Sapore di Piperi',  rating: 4.5, sub: 'אווירה מסורתית' },
+    { name: 'Trata',             rating: 4.4, sub: 'מטבח ים תיכוני' },
+    { name: 'Maïstráli',         rating: 4.5, sub: 'משפחתי, אותנטי' },
+    { name: 'Basilico',          rating: 4.3, sub: 'מנות גדולות' },
+    { name: 'Taverna Karantzis', rating: 4.4, sub: 'דגי הבוקר' },
+  ],
+  featuredTaverna: {
+    name: 'Maïstráli',
+    menu: [
+      { dish: 'אוקטופוס בגריל',    priceEur: 14 },
+      { dish: 'חמיצת ים',         priceEur: 9  },
+      { dish: 'סלט יווני',         priceEur: 8  },
+      { dish: 'מוסקה ביתית',       priceEur: 12 },
+      { dish: 'דג ים בשמן זית',   priceEur: 22 },
+    ],
+  },
+  nightlifeVenues: [
+    { name: 'Excess Club',  imageSrc: 'dancefloor.jpg', tagline: 'DJים בינלאומיים · חצות עד עלות השחר' },
+    { name: 'The Tree Bar', imageSrc: 'mojito.jpg',    tagline: 'קוקטיילים על הטיילת · שקיעות ולאונג׳' },
   ],
 };
-
-// Single source of truth for video timing.
-export const VIDEO_FPS = 30;
-export const VIDEO_DURATION_FRAMES = 600; // 20 seconds @ 30fps
-
-// Scene timeline (frames within the full 600-frame composition).
-export const TIMELINE = {
-  intro:    { from: 0,   durationInFrames: 120 }, // 0-4s
-  hook:     { from: 120, durationInFrames: 120 }, // 4-8s
-  showcase: { from: 240, durationInFrames: 240 }, // 8-16s
-  cta:      { from: 480, durationInFrames: 120 }, // 16-20s
-} as const;

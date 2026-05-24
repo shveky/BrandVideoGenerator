@@ -7,6 +7,7 @@ import { TIMELINE } from './defaults';
 import { BackgroundGradient } from '../scenes/BackgroundGradient';
 import { IntroScene } from '../scenes/IntroScene';
 import { HookScene } from '../scenes/HookScene';
+import { TripPlanScene } from '../scenes/TripPlanScene';
 import { FlightInfoScene } from '../scenes/FlightInfoScene';
 import { YachtSpecsScene } from '../scenes/YachtSpecsScene';
 import { YachtSimulatorScene } from '../scenes/YachtSimulatorScene';
@@ -56,6 +57,10 @@ export const BrandVideo: React.FC<BrandVideoProps> = (props) => {
 
       <Sequence from={TIMELINE.hook.from} durationInFrames={TIMELINE.hook.durationInFrames}>
         <HookScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.tripPlan.from} durationInFrames={TIMELINE.tripPlan.durationInFrames}>
+        <TripPlanScene {...props} isPortrait={isPortrait} />
       </Sequence>
 
       <Sequence from={TIMELINE.flight.from} durationInFrames={TIMELINE.flight.durationInFrames}>

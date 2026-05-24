@@ -1,89 +1,91 @@
 import React from 'react';
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame } from 'remotion';
 import type { BrandVideoProps } from '../compositions/types';
 
 type Props = BrandVideoProps & { isPortrait: boolean };
 
-// 10-14s: yacht silhouette draws in via strokeDashoffset, then 5 spec chips
-// fade-slide into place, staggered.
+// 10-14s: Real screenshot of the yacht modal (Esther — Bali 4.2) from the
+// sailing app, slow Ken Burns + a row of stat chips floating along the
+// bottom for at-a-glance specs.
 export const YachtSpecsScene: React.FC<Props> = ({ yachtSpecs, brandAccent, isPortrait }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const sceneOut = interpolate(frame, [108, 120], [1, 0], { extrapolateLeft: 'clamp' });
+  const DUR = 120;
 
-  // SVG stroke draw-in (path length ~700 for our silhouette)
-  const PATH_LEN = 700;
-  const draw = interpolate(frame, [0, 30], [PATH_LEN, 0], {
+  const fade = interpolate(frame, [0, 10, DUR - 10, DUR], [0, 1, 1, 0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
-  // Title fade in
-  const titleIn = interpolate(frame, [4, 24], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const scale = interpolate(frame, [0, DUR], [1.02, 1.12], { extrapolateRight: 'clamp' });
+  const panY = interpolate(frame, [0, DUR], [0, -30], { extrapolateRight: 'clamp' });
 
-  // Subtle bob — deterministic, frame-driven
-  const bob = Math.sin(frame / 15) * 4;
+  const titleIn = interpolate(frame, [6, 24], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const titleOut = interpolate(frame, [DUR - 18, DUR - 4], [1, 0], { extrapolateLeft: 'clamp' });
 
   const chips = [
     { label: `${yachtSpecs.lengthM}×${yachtSpecs.beamM} מ׳`, icon: '📏' },
     { label: `${yachtSpecs.cabins} תאים`,                    icon: '🛏' },
     { label: `${yachtSpecs.berths} מיטות`,                   icon: '👥' },
     { label: yachtSpecs.engines,                              icon: '⚙' },
-    { label: `${yachtSpecs.charterType}`,                     icon: '🛟' },
   ];
 
-  const titleFontSize = isPortrait ? 56 : 64;
-  const silhouetteSize = isPortrait ? 360 : 480;
-
   return (
-    <AbsoluteFill style={{
-      display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center',
-      gap: 24, opacity: sceneOut,
-    }}>
+    <AbsoluteFill style={{ opacity: fade, overflow: 'hidden', background: '#0a3d62' }}>
+      <Img
+        src={staticFile('screenshots/09-yacht-modal.png')}
+        style={{
+          width: '100%', height: '100%', objectFit: 'cover',
+          transform: `scale(${scale}) translate(0, ${panY}px)`,
+          transformOrigin: 'center top',
+        }}
+      />
+
+      {/* Vignette */}
+      <AbsoluteFill style={{
+        background: 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.8) 100%)',
+        pointerEvents: 'none',
+      }} />
+
+      {/* Title strip */}
       <div style={{
-        opacity: titleIn,
+        position: 'absolute', top: 28, left: 0, right: 0,
         textAlign: 'center',
-        fontFamily: 'inherit',
+        fontSize: isPortrait ? 36 : 46, fontWeight: 800,
+        color: '#fff', textShadow: '0 4px 14px rgba(0,0,0,0.8)',
+        opacity: titleIn * titleOut,
       }}>
-        <div style={{ fontSize: titleFontSize, fontWeight: 800, letterSpacing: -1 }}>
-          {yachtSpecs.model}
-        </div>
-        <div style={{ fontSize: titleFontSize * 0.4, color: brandAccent, fontWeight: 700, marginTop: 4 }}>
-          {yachtSpecs.year} · קטמרן
-        </div>
+        ⛵ {yachtSpecs.model} · {yachtSpecs.year}
       </div>
 
+      {/* Stat chip row — bottom, staggered fade-in */}
       <div style={{
-        transform: `translateY(${bob}px)`,
-        width: silhouetteSize, height: silhouetteSize * 0.55,
-      }}>
-        <YachtSilhouette accent={brandAccent} drawOffset={draw} pathLen={PATH_LEN} />
-      </div>
-
-      <div style={{
-        display: 'flex', flexWrap: 'wrap', gap: 14,
-        justifyContent: 'center', maxWidth: isPortrait ? 600 : 1200,
+        position: 'absolute', bottom: isPortrait ? 28 : 44, left: 0, right: 0,
+        display: 'flex', flexWrap: 'wrap', justifyContent: 'center',
+        gap: isPortrait ? 8 : 12,
         padding: '0 24px',
       }}>
         {chips.map((c, i) => {
-          const startFrame = 40 + i * 8;
-          const o = interpolate(frame, [startFrame, startFrame + 18], [0, 1], {
+          const start = 30 + i * 7;
+          const o = interpolate(frame, [start, start + 18], [0, 1], {
             extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
           });
-          const slide = interpolate(frame, [startFrame, startFrame + 18], [16, 0], {
+          const slide = interpolate(frame, [start, start + 18], [16, 0], {
             extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
           });
+          const out = interpolate(frame, [DUR - 18, DUR - 4], [1, 0], { extrapolateLeft: 'clamp' });
           return (
             <div key={i} style={{
-              padding: '10px 22px',
-              background: 'rgba(255,255,255,0.08)',
-              border: `1px solid ${brandAccent}88`,
+              padding: isPortrait ? '8px 16px' : '10px 22px',
+              background: 'rgba(10, 61, 98, 0.85)',
+              border: `1px solid ${brandAccent}`,
               borderRadius: 999,
-              fontSize: isPortrait ? 22 : 26,
+              fontSize: isPortrait ? 18 : 22,
               fontWeight: 700,
-              opacity: o,
+              color: '#fff',
+              opacity: o * out,
               transform: `translateY(${slide}px)`,
-              display: 'flex', alignItems: 'center', gap: 8,
+              display: 'flex', alignItems: 'center', gap: 6,
+              backdropFilter: 'blur(6px)',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.4)',
             }}>
               <span>{c.icon}</span>
               <span dir="rtl">{c.label}</span>
@@ -94,20 +96,3 @@ export const YachtSpecsScene: React.FC<Props> = ({ yachtSpecs, brandAccent, isPo
     </AbsoluteFill>
   );
 };
-
-// Simple catamaran silhouette (two hulls + deck + mast + sail)
-const YachtSilhouette: React.FC<{ accent: string; drawOffset: number; pathLen: number }> = ({ accent, drawOffset, pathLen }) => (
-  <svg viewBox="0 0 400 220" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M 30 160
-         L 90 160 L 100 175 L 300 175 L 310 160 L 370 160
-         M 60 160 L 140 130 L 260 130 L 340 160
-         M 200 130 L 200 25
-         M 200 25 L 290 100 L 200 100 Z"
-      stroke={accent} strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round"
-      strokeDasharray={pathLen} strokeDashoffset={drawOffset}
-    />
-    {/* Waterline waves */}
-    <path d="M 20 200 Q 100 192 200 200 T 380 200" stroke={accent} strokeOpacity={0.3} strokeWidth={2} fill="none" />
-  </svg>
-);

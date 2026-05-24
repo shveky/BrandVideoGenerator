@@ -20,15 +20,16 @@ export const YachtSimulatorScene: React.FC<Props> = ({ brandAccent, isPortrait }
   const panX = interpolate(frame, [0, DUR], [0, 100], { extrapolateRight: 'clamp' });
   const panY = interpolate(frame, [0, DUR], [0, -40], { extrapolateRight: 'clamp' });
 
-  // Boat overlay — animates along a polyline from one screen point to another.
-  // Coords are approximate % positions inside the screenshot for Preveza → Nidri.
-  // (Tuned for the 1600×1000 screenshot; the live frame scales these proportionally.)
+  // Boat overlay — compensated for Ken Burns (scale 1→1.5, pan +100/-40 with origin center).
+  // Route on the v2 screenshot is at image-x≈22-28%, image-y≈19-42%.
+  // After camera transform, that lands at screen ≈ (27,20) → (16,35).
   const waypoints = [
-    { x: 50, y: 28 },  // near Preveza marker
-    { x: 47, y: 35 },
-    { x: 45, y: 42 },
-    { x: 42, y: 48 },
-    { x: 38, y: 54 },  // near Nidri marker
+    { x: 27, y: 20 },  // Preveza (start, scale ≈ 1.07)
+    { x: 24, y: 24 },  // entering canal
+    { x: 22, y: 27 },  // mid canal
+    { x: 19, y: 30 },  // exiting canal
+    { x: 17, y: 33 },  // approaching Nidri
+    { x: 16, y: 35 },  // Nidri (end, scale ≈ 1.43)
   ];
   const TRAVEL_START = 20;
   const TRAVEL_END = 130;

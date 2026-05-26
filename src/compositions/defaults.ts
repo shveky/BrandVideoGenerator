@@ -1,21 +1,21 @@
 import type { BrandVideoProps } from './types';
 
-// v3 expanded timeline (1140 frames = 38s @ 30fps).
-// New TripPlan scene inserted after Hook — sets context that the app helps
-// the skipper organize the trip, then the rest of the scenes show the data.
+// v4 timeline (1260 frames = 42s @ 30fps). Added WeatherScene before CTA
+// to showcase the Open-Meteo per-stop forecast feature.
 export const VIDEO_FPS = 30;
-export const VIDEO_DURATION_FRAMES = 1140;
+export const VIDEO_DURATION_FRAMES = 1260;
 
 export const TIMELINE = {
   intro:     { from: 0,    durationInFrames: 90  }, // 0-3s
   hook:      { from: 90,   durationInFrames: 90  }, // 3-6s
-  tripPlan:  { from: 180,  durationInFrames: 120 }, // 6-10s   NEW
+  tripPlan:  { from: 180,  durationInFrames: 120 }, // 6-10s
   flight:    { from: 300,  durationInFrames: 120 }, // 10-14s
   yacht:     { from: 420,  durationInFrames: 120 }, // 14-18s
   simulator: { from: 540,  durationInFrames: 150 }, // 18-23s
   tavernas:  { from: 690,  durationInFrames: 210 }, // 23-30s
   nightlife: { from: 900,  durationInFrames: 120 }, // 30-34s
-  cta:       { from: 1020, durationInFrames: 120 }, // 34-38s
+  weather:   { from: 1020, durationInFrames: 120 }, // 34-38s NEW
+  cta:       { from: 1140, durationInFrames: 120 }, // 38-42s
 } as const;
 
 // Defaults match props.json so studio and CLI renders show the same content

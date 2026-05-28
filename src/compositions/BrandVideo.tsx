@@ -14,6 +14,7 @@ import { YachtSimulatorScene } from '../scenes/YachtSimulatorScene';
 import { TavernasScene } from '../scenes/TavernasScene';
 import { NightlifeScene } from '../scenes/NightlifeScene';
 import { WeatherScene } from '../scenes/WeatherScene';
+import { WindLayerScene } from '../scenes/WindLayerScene';
 import { CtaScene } from '../scenes/CtaScene';
 
 // Load Heebo (Hebrew + Latin support) once at module load.
@@ -86,6 +87,10 @@ export const BrandVideo: React.FC<BrandVideoProps> = (props) => {
 
       <Sequence from={TIMELINE.weather.from} durationInFrames={TIMELINE.weather.durationInFrames}>
         <WeatherScene {...props} isPortrait={isPortrait} />
+      </Sequence>
+
+      <Sequence from={TIMELINE.windLayer.from} durationInFrames={TIMELINE.windLayer.durationInFrames}>
+        <WindLayerScene {...props} isPortrait={isPortrait} />
       </Sequence>
 
       <Sequence from={TIMELINE.cta.from} durationInFrames={TIMELINE.cta.durationInFrames}>

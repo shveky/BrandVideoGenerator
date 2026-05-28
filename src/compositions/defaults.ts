@@ -1,9 +1,9 @@
 import type { BrandVideoProps } from './types';
 
-// v4 timeline (1260 frames = 42s @ 30fps). Added WeatherScene before CTA
-// to showcase the Open-Meteo per-stop forecast feature.
+// v5 timeline (1380 frames = 46s @ 30fps). Added WindLayerScene before CTA
+// to showcase the live wind+clouds GIS overlays.
 export const VIDEO_FPS = 30;
-export const VIDEO_DURATION_FRAMES = 1260;
+export const VIDEO_DURATION_FRAMES = 1380;
 
 export const TIMELINE = {
   intro:     { from: 0,    durationInFrames: 90  }, // 0-3s
@@ -14,8 +14,9 @@ export const TIMELINE = {
   simulator: { from: 540,  durationInFrames: 150 }, // 18-23s
   tavernas:  { from: 690,  durationInFrames: 210 }, // 23-30s
   nightlife: { from: 900,  durationInFrames: 120 }, // 30-34s
-  weather:   { from: 1020, durationInFrames: 120 }, // 34-38s NEW
-  cta:       { from: 1140, durationInFrames: 120 }, // 38-42s
+  weather:   { from: 1020, durationInFrames: 120 }, // 34-38s
+  windLayer: { from: 1140, durationInFrames: 120 }, // 38-42s NEW
+  cta:       { from: 1260, durationInFrames: 120 }, // 42-46s
 } as const;
 
 // Defaults match props.json so studio and CLI renders show the same content

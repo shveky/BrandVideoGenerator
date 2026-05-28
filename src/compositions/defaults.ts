@@ -1,9 +1,10 @@
 import type { BrandVideoProps } from './types';
 
-// v5 timeline (1380 frames = 46s @ 30fps). Added WindLayerScene before CTA
-// to showcase the live wind+clouds GIS overlays.
+// v4 timeline (1260 frames = 42s). WindLayerScene removed — clouds layer
+// rendering needs fix (shows as single oversized blob at low zoom).
+// Will re-add once the clouds-radius-vs-zoom bug is fixed.
 export const VIDEO_FPS = 30;
-export const VIDEO_DURATION_FRAMES = 1380;
+export const VIDEO_DURATION_FRAMES = 1260;
 
 export const TIMELINE = {
   intro:     { from: 0,    durationInFrames: 90  }, // 0-3s
@@ -15,8 +16,7 @@ export const TIMELINE = {
   tavernas:  { from: 690,  durationInFrames: 210 }, // 23-30s
   nightlife: { from: 900,  durationInFrames: 120 }, // 30-34s
   weather:   { from: 1020, durationInFrames: 120 }, // 34-38s
-  windLayer: { from: 1140, durationInFrames: 120 }, // 38-42s NEW
-  cta:       { from: 1260, durationInFrames: 120 }, // 42-46s
+  cta:       { from: 1140, durationInFrames: 120 }, // 38-42s
 } as const;
 
 // Defaults match props.json so studio and CLI renders show the same content

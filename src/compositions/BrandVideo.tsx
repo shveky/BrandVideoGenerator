@@ -89,10 +89,6 @@ export const BrandVideo: React.FC<BrandVideoProps> = (props) => {
         <WeatherScene {...props} isPortrait={isPortrait} />
       </Sequence>
 
-      <Sequence from={TIMELINE.windLayer.from} durationInFrames={TIMELINE.windLayer.durationInFrames}>
-        <WindLayerScene {...props} isPortrait={isPortrait} />
-      </Sequence>
-
       <Sequence from={TIMELINE.cta.from} durationInFrames={TIMELINE.cta.durationInFrames}>
         <CtaScene {...props} isPortrait={isPortrait} />
       </Sequence>

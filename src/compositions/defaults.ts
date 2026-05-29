@@ -1,10 +1,10 @@
 import type { BrandVideoProps } from './types';
 
-// v4 timeline (1260 frames = 42s). WindLayerScene removed — clouds layer
-// rendering needs fix (shows as single oversized blob at low zoom).
-// Will re-add once the clouds-radius-vs-zoom bug is fixed.
+// v5 timeline (1380 frames = 46s). WindLayerScene re-added at frame 1140
+// (after weather, before cta) — clouds-blob bug was fixed in app commit
+// 39d097b so the captured screenshot now shows cloud cells properly.
 export const VIDEO_FPS = 30;
-export const VIDEO_DURATION_FRAMES = 1260;
+export const VIDEO_DURATION_FRAMES = 1380;
 
 export const TIMELINE = {
   intro:     { from: 0,    durationInFrames: 90  }, // 0-3s
@@ -16,7 +16,8 @@ export const TIMELINE = {
   tavernas:  { from: 690,  durationInFrames: 210 }, // 23-30s
   nightlife: { from: 900,  durationInFrames: 120 }, // 30-34s
   weather:   { from: 1020, durationInFrames: 120 }, // 34-38s
-  cta:       { from: 1140, durationInFrames: 120 }, // 38-42s
+  windLayer: { from: 1140, durationInFrames: 120 }, // 38-42s — LIVE wind + clouds
+  cta:       { from: 1260, durationInFrames: 120 }, // 42-46s
 } as const;
 
 // Defaults match props.json so studio and CLI renders show the same content
